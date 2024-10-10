@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,6 +25,6 @@ public class Course implements Serializable {
     Support support;
     Float price;
     int timeSlot;
-    @OneToMany
+    @OneToMany(mappedBy = "course")
     Set<Registration>registrations;
 }

@@ -7,10 +7,6 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 
 
 
@@ -25,6 +21,4 @@ public class Subscription implements Serializable {
     Float price;
     @Enumerated(EnumType.STRING)
     TypeSubscription typeSub;
-
-
 }

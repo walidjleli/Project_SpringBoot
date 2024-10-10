@@ -18,13 +18,10 @@ import java.util.Set;
 public class Instructor implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long numInstructor;
-    private String firstName;
-    private String lastName;
-    private LocalDate dateOfHire;
+     Long numInstructor;
+     String firstName;
+     String lastName;
+     LocalDate dateOfHire;
     @OneToMany
-    Set<Course>courses;
-
-
-
+    Set<Course> courses;
 }

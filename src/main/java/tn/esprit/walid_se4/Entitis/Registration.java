@@ -17,12 +17,10 @@ import java.io.Serializable;
 public class Registration implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long numRegistration;
-    private int numWeek;
+     long numRegistration;
+     int numWeek;
    @ManyToOne
-    Course courses;
+    Course course;
   @ManyToOne
     Skier skier;
-
-
 }

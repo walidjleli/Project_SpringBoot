@@ -20,13 +20,13 @@ public class Skier implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      Long numSkier;
      String name;
+     @Column(nullable = false)
      LocalDate birthDate;
      int age;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
     Subscription subscription;
     @ManyToMany
-    Set<Piste>pistes;
-
-
-
+    Set<Piste> pistes;
+    @OneToMany(mappedBy = "skier", fetch = FetchType.EAGER)
+    Set<Registration> registration;
 }

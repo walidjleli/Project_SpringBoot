@@ -25,7 +25,7 @@ public class Piste implements Serializable {
      int length;
      int slope;
     @ManyToMany
-    Set<Skier>skiers;
+    Set<Skier> skiers;
 
 
 
