@@ -3,15 +3,15 @@ package tn.esprit.walid_se4.Entitis;
 import java.io.Serializable;
 import java.util.Set;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level= AccessLevel.PRIVATE)
+
 
 
 @Entity
@@ -26,9 +26,4 @@ public class Piste implements Serializable {
      int slope;
     @ManyToMany
     Set<Skier> skiers;
-
-
-
-
-
 }

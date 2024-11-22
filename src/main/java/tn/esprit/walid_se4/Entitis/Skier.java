@@ -1,9 +1,7 @@
 package tn.esprit.walid_se4.Entitis;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 
 import java.io.Serializable;
@@ -13,19 +11,20 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level= AccessLevel.PRIVATE)
 
 @Entity
 public class Skier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     Long numSkier;
-     String name;
-     @Column(nullable = false)
-     LocalDate birthDate;
-     int age;
-    @OneToOne(cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
+    Long numSkier;
+    String name;
+    @Column(nullable = false)
+    LocalDate birthDate;
+    int age;
+    @OneToOne(cascade = {CascadeType.PERSIST ,CascadeType.REMOVE })
     Subscription subscription;
-    @ManyToMany
+    @ManyToMany (mappedBy = "skiers")
     Set<Piste> pistes;
     @OneToMany(mappedBy = "skier", fetch = FetchType.EAGER)
     Set<Registration> registration;
