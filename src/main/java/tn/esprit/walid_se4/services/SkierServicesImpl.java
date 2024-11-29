@@ -1,6 +1,7 @@
 package tn.esprit.walid_se4.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.reactive.TransactionalOperator;
 import tn.esprit.walid_se4.Entitis.*;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
@@ -17,7 +18,7 @@ public class SkierServicesImpl implements ISkierServices {
     private final ISubscriptionRepository subscriptionRepository;
     private final IRegistrationRepository registrationRepository;
     private final ICoursRepository courseRepository;
-
+    private final TransactionalOperator transactionalOperator;
 
 
     @Override
@@ -59,9 +60,14 @@ public class SkierServicesImpl implements ISkierServices {
     @Override
     public Skier addSkierAndAssignToCourse(Skier skier , Long numCourse){
 
-        Registration registration = registrationRepository.findById(numCourse).orElse(null);
+       // Registration registration = registrationRepository.findById(numCourse).orElse(null);
         Course course = courseRepository.findById(numCourse).orElse(null);
-        registration.setSkier(skier);
+        for (Registration registration : skier.getRegistration()){
+            registration.setCourse(course);
+            registration.setSkier(skier);
+            registrationRepository.save(registration);
+        }
+
         return skierRepository.save(skier);
     }
     @Override
