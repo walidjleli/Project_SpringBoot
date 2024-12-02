@@ -18,10 +18,11 @@ public class Skier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long numSkier;
-    String name;
+    String firstName;
+    String lastName;
     @Column(nullable = false)
     LocalDate birthDate;
-    int age;
+
     @OneToOne(cascade = {CascadeType.PERSIST ,CascadeType.REMOVE })
     Subscription subscription;
     @ManyToMany (mappedBy = "skiers")

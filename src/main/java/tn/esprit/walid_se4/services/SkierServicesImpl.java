@@ -18,7 +18,6 @@ public class SkierServicesImpl implements ISkierServices {
     private final ISubscriptionRepository subscriptionRepository;
     private final IRegistrationRepository registrationRepository;
     private final ICoursRepository courseRepository;
-    private final TransactionalOperator transactionalOperator;
 
 
     @Override
@@ -74,6 +73,17 @@ public class SkierServicesImpl implements ISkierServices {
     public List<Skier> retrieveSkiersBySubscriptionType(TypeSubscription typeSubscription) {
         return skierRepository.findBySubscription_TypeSub(typeSubscription);
     }
+
+   @Override
+    public Skier getByFirstnameAndLastname(String firstName, String lastName) {
+
+       return skierRepository.findByFirstNameAndLastName( firstName, lastName);
+   }
+    @Override
+    public  Skier findByBirthDate(LocalDate birthDate){
+        return skierRepository.findByBirthDate(birthDate);
+    }
+
 
 
 }

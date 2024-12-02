@@ -9,9 +9,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 
-
+@Getter
+@Setter
 @Entity
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class Subscription implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
