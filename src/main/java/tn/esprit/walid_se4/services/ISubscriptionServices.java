@@ -18,4 +18,6 @@ public interface ISubscriptionServices {
     void removeSubscription(Long numSub);
 
     public Set<Subscription> getSubscriptionByType(TypeSubscription type);
-    }
+    void getByStartDate();
+
+}

@@ -20,4 +20,5 @@ public interface ISkierServices {
     Skier getByFirstnameAndLastname(String firstName , String lastName);
     Skier findByBirthDate(LocalDate birthDate);
 
+    void getSkiersNotif();
 }

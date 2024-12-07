@@ -1,6 +1,8 @@
 package tn.esprit.walid_se4.services;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import tn.esprit.walid_se4.Entitis.Subscription;
 import tn.esprit.walid_se4.Entitis.TypeSubscription;
@@ -8,13 +10,14 @@ import tn.esprit.walid_se4.Reposetries.ISubscriptionRepository;
 
 import java.util.List;
 import java.util.Set;
-
+@Slf4j
 @RequiredArgsConstructor
 @Service
 
-public class SubscriptionServicesImpl implements ISubscriptionServices {private final ISubscriptionRepository subscriptionRepository;
+public class SubscriptionServicesImpl implements ISubscriptionServices {
+    private final ISubscriptionRepository subscriptionRepository;
 
-    public Subscription addSubscription(Subscription subscription){
+    public Subscription addSubscription(Subscription subscription) {
         return subscriptionRepository.save(subscription);
     }
 
@@ -41,5 +44,14 @@ public class SubscriptionServicesImpl implements ISubscriptionServices {private 
     public Set<Subscription> getSubscriptionByType(TypeSubscription type) {
         return subscriptionRepository.findBytypeSub(type);
     }
+
+    @Scheduled(cron = "0 */1 * * * *")
+    @Override
+    public void getByStartDate() {
+        for (Subscription subscription : subscriptionRepository.findAll()) {
+            log.info(subscription.toString());
+        }
+    }
+
 
 }

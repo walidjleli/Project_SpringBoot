@@ -1,6 +1,8 @@
 package tn.esprit.walid_se4.services;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.reactive.TransactionalOperator;
 import tn.esprit.walid_se4.Entitis.*;
 import org.springframework.stereotype.Service;
@@ -8,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import tn.esprit.walid_se4.Reposetries.*;
-
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class SkierServicesImpl implements ISkierServices {
@@ -83,7 +85,15 @@ public class SkierServicesImpl implements ISkierServices {
     public  Skier findByBirthDate(LocalDate birthDate){
         return skierRepository.findByBirthDate(birthDate);
     }
-
+    @Scheduled(cron = "0 */1 * * * *")
+    @Override
+    public void getSkiersNotif() {
+        // System.out.println("Bonjour !");
+        log.info("Bonjour !");
+        log.debug("in method : getSkiersNotif !");
+        log.warn("warning !!");
+        log.error("c'est une exception !");
+    }
 
 
 }
